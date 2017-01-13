@@ -1,6 +1,6 @@
 package org.missions;
 
-import org.missions.data.Vars;
+import org.missions.data.OM_Vars;
 import org.missions.data.enums.MiningLocation;
 import org.missions.tasks.DepositItems;
 import org.missions.tasks.MineRock;
@@ -83,17 +83,17 @@ public class OrionMiner extends Mission implements CommandReceiver {
 
 	private boolean updateTargetTree() {
 		script.log(this, false, "Updating target rock");
-		RockType old = Vars.get().rock_type;
-		Vars.get().rock_type = mining.getBestMineableRockType(false);
-		if (Vars.get().rock_type.ordinal() > target.ordinal())
-			Vars.get().rock_type = target;
+		RockType old = OM_Vars.get().rock_type;
+		OM_Vars.get().rock_type = mining.getBestMineableRockType(false);
+		if (OM_Vars.get().rock_type.ordinal() > target.ordinal())
+			OM_Vars.get().rock_type = target;
 
-		return old != Vars.get().rock_type;
+		return old != OM_Vars.get().rock_type;
 	}
 
 	public void updateChoppingLoc() {
 		script.log(this, false, "Updating mining loc....");
-		orion_main.receiveCommand("getLoc:wc:free:" + Vars.get().rock_type);
+		orion_main.receiveCommand("getLoc:wc:free:" + OM_Vars.get().rock_type);
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class OrionMiner extends Mission implements CommandReceiver {
 		String[] parts = command.split(":");
 		if (parts[0].equals("bestLoc")) {
 			MiningLocation bestLoc = MiningLocation.valueOf(parts[1]);
-			Vars.get().mining_location = bestLoc;
+			OM_Vars.get().mining_location = bestLoc;
 			script.log(this, false, "New best location: " + bestLoc);
 		}
 	}

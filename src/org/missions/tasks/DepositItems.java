@@ -1,7 +1,7 @@
 package org.missions.tasks;
 
 import org.missions.OrionMiner;
-import org.missions.data.Vars;
+import org.missions.data.OM_Vars;
 import viking.api.Timing;
 import viking.api.skills.mining.enums.PickaxeType;
 import viking.framework.task.Task;
@@ -20,7 +20,7 @@ public class DepositItems extends Task<OrionMiner> {
     }
 
     public void execute() {
-        if (Vars.get().mining_location.shouldUseDepositBox()) {
+        if (OM_Vars.get().mining_location.shouldUseDepositBox()) {
             if (depositBox.isOpen()) {
                 if (depositBox.depositAllExcept(PickaxeType.getItemIDs()))
                     Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500));

@@ -1,7 +1,7 @@
 package org.missions.tasks;
 
 import org.missions.OrionMiner;
-import org.missions.data.Vars;
+import org.missions.data.OM_Vars;
 import org.osbot.rs07.api.def.ObjectDefinition;
 import org.osbot.rs07.api.filter.Filter;
 import org.osbot.rs07.api.filter.NameFilter;
@@ -22,7 +22,7 @@ public class MineRock extends Task<OrionMiner> {
 
     @Override
     public boolean validate() {
-        if (Vars.get().is_upgrading_pickaxe)
+        if (OM_Vars.get().is_upgrading_pickaxe)
             return false;
 
         final RS2Object ROCK = getValidRock();
@@ -48,7 +48,7 @@ public class MineRock extends Task<OrionMiner> {
     }
 
     private RS2Object getValidRock() {
-        Filter filter = VFilters.and(new NameFilter<>("Rocks"), colorFilter((Vars.get().rock_type.getRockColor())));
+        Filter filter = VFilters.and(new NameFilter<>("Rocks"), colorFilter((OM_Vars.get().rock_type.getRockColor())));
 
         return objects.closest(filter);
     }
@@ -58,7 +58,7 @@ public class MineRock extends Task<OrionMiner> {
             if (rs2Object == null)
                 return false;
 
-            if (!Vars.get().mining_location.getArea().contains(rs2Object))
+            if (!OM_Vars.get().mining_location.getArea().contains(rs2Object))
                 return false;
 
             final ObjectDefinition object_definition = rs2Object.getDefinition();
@@ -78,7 +78,7 @@ public class MineRock extends Task<OrionMiner> {
 
     @Override
     public String toString() {
-        return "Mining " + Vars.get().rock_type;
+        return "Mining " + OM_Vars.get().rock_type;
     }
 
 }

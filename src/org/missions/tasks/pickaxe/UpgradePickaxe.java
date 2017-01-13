@@ -1,7 +1,7 @@
 package org.missions.tasks.pickaxe;
 
 import org.missions.OrionMiner;
-import org.missions.data.Vars;
+import org.missions.data.OM_Vars;
 import viking.api.Timing;
 import viking.api.skills.mining.enums.PickaxeType;
 
@@ -19,7 +19,7 @@ public class UpgradePickaxe extends GetPickaxe {
 
     @Override
     public boolean validate() {
-        if (!client.isLoggedIn() || Vars.get().is_upgrading_pickaxe)
+        if (!client.isLoggedIn() || OM_Vars.get().is_upgrading_pickaxe)
             return false;
 
         if (!bank.isOpen())
@@ -34,7 +34,7 @@ public class UpgradePickaxe extends GetPickaxe {
 
     @Override
     public void execute() {
-        Vars.get().is_upgrading_pickaxe = true;
+        OM_Vars.get().is_upgrading_pickaxe = true;
 
         super.execute();
 

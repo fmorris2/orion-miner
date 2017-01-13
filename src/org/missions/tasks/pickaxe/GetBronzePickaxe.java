@@ -1,7 +1,7 @@
 package org.missions.tasks.pickaxe;
 
 import org.missions.OrionMiner;
-import org.missions.data.Vars;
+import org.missions.data.OM_Vars;
 import org.osbot.rs07.api.map.Position;
 import viking.framework.task.Task;
 
@@ -18,7 +18,7 @@ public class GetBronzePickaxe extends Task<OrionMiner> {
 
     @Override
     public boolean validate() {
-        return Vars.get().needsBronzePickAxe;
+        return OM_Vars.get().needsBronzePickAxe;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class GetBronzePickaxe extends Task<OrionMiner> {
         if (myPosition().distance(TUTOR_POS) > DIST_THRESH)
             walkUtils.walkTo(TUTOR_POS);
         else if (iFact.dialogue("Talk-to", "Mining tutor", 15, 1).execute() && inventory.contains("Bronze pickaxe"))
-            Vars.get().needsBronzePickAxe = false;
+            OM_Vars.get().needsBronzePickAxe = false;
 
     }
 }

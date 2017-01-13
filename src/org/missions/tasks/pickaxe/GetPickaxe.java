@@ -1,7 +1,7 @@
 package org.missions.tasks.pickaxe;
 
 import org.missions.OrionMiner;
-import org.missions.data.Vars;
+import org.missions.data.OM_Vars;
 import org.osbot.rs07.api.model.Item;
 import org.osbot.rs07.api.ui.EquipmentSlot;
 import viking.api.Timing;
@@ -19,8 +19,8 @@ public class GetPickaxe extends Task<OrionMiner> {
 
     @Override
     public boolean validate() {
-        if (!client.isLoggedIn() || !myPlayer().isVisible() || Vars.get().is_upgrading_pickaxe
-                || Vars.get().needsBronzePickAxe)
+        if (!client.isLoggedIn() || !myPlayer().isVisible() || OM_Vars.get().is_upgrading_pickaxe
+                || OM_Vars.get().needsBronzePickAxe)
             return false;
 
         return !equipment.isWearingItem(EquipmentSlot.WEAPON) && mining.getBestUsablePickaxe(false) == null;
@@ -36,14 +36,14 @@ public class GetPickaxe extends Task<OrionMiner> {
 
             final PickaxeType best_usable_axe = mining.getBestUsablePickaxe(true);
             if (best_usable_axe == null) {
-                Vars.get().needsBronzePickAxe = true;
+                OM_Vars.get().needsBronzePickAxe = true;
                 return;
             }
 
             if (bank.withdraw(best_usable_axe.getItemID(), 1))
                 if (Timing.waitCondition(() -> inventory.getItems().length > 0, 150, random(2000, 2500)))
                     if (mining.getBestUsablePickaxe(false) == best_usable_axe)
-                        Vars.get().is_upgrading_pickaxe = false;
+                        OM_Vars.get().is_upgrading_pickaxe = false;
         } else {
             if (bankUtils.isInBank()) {
                 if (bankUtils.open())
