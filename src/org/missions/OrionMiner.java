@@ -2,7 +2,7 @@ package org.missions;
 
 import org.missions.data.OM_Vars;
 import org.missions.data.enums.MiningLocation;
-import org.missions.tasks.DepositItems;
+import org.missions.tasks.OM_DepositItems;
 import org.missions.tasks.MineRock;
 import org.missions.tasks.WalkToMiningLocation;
 import org.missions.tasks.pickaxe.EquipPickaxe;
@@ -72,7 +72,7 @@ public class OrionMiner extends Mission implements CommandReceiver {
 	public void onMissionStart() {
 		/*updateTargetTree();
 		updateChoppingLoc();*/
-		TASK_MANAGER.addTask(new DepositItems(this), new GetPickaxe(this), new UpgradePickaxe(this),
+		TASK_MANAGER.addTask(new OM_DepositItems(this), new GetPickaxe(this), new UpgradePickaxe(this),
 				new EquipPickaxe(this), new WalkToMiningLocation(this), new MineRock(this),
 				new GetBronzePickaxe(this));
 	}
