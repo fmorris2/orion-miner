@@ -20,7 +20,7 @@ public class OM_Vars {
 
     public boolean is_upgrading_pickaxe, needsBronzePickAxe;
 
-    public MiningLocation mining_location = MiningLocation.W_VARROCK_WEST_1;
+    public MiningLocation mining_location = MiningLocation.M_VARROCK_WEST_1;
     public RockType rock_type = RockType.TIN_ORE;
 
 }
