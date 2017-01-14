@@ -10,15 +10,20 @@ import org.missions.tasks.pickaxe.GetBronzePickaxe;
 import org.missions.tasks.pickaxe.GetPickaxe;
 import org.missions.tasks.pickaxe.UpgradePickaxe;
 import org.osbot.rs07.api.ui.Message;
+import org.osbot.rs07.api.ui.Skill;
+import viking.api.skills.mining.enums.PickaxeType;
 import viking.api.skills.mining.enums.RockType;
 import viking.framework.command.CommandReceiver;
 import viking.framework.goal.GoalList;
 import viking.framework.goal.impl.InfiniteGoal;
+import viking.framework.goal.impl.SkillGoal;
+import viking.framework.item_management.IMEntry;
+import viking.framework.item_management.ItemManagement;
 import viking.framework.mission.Mission;
 import viking.framework.script.VikingScript;
 import viking.framework.task.TaskManager;
 
-public class OrionMiner extends Mission implements CommandReceiver {
+public class OrionMiner extends Mission implements CommandReceiver, ItemManagement {
 
 	private final TaskManager<OrionMiner> TASK_MANAGER = new TaskManager<>(this);
 
@@ -111,5 +116,20 @@ public class OrionMiner extends Mission implements CommandReceiver {
 	public void onMessage(Message m) {
 		if (m.getMessage().contains("advanced a Woodcutting level") && updateTargetTree())
 			updateChoppingLoc();
+	}
+
+	@Override
+	public IMEntry[] itemsToBuy() {
+		return new IMEntry[] {
+				new IMEntry(this, PickaxeType.STEEL.getItemID(), 1, "Steel pickaxe", new SkillGoal(skills, Skill.MINING, PickaxeType.STEEL.getMiningLevel())),
+				new IMEntry(this, PickaxeType.MITHRIL.getItemID(), 1, "Mithril pickaxe", new SkillGoal(skills, Skill.MINING, PickaxeType.MITHRIL.getMiningLevel())),
+				new IMEntry(this, PickaxeType.ADAMANT.getItemID(), 1, "Adamant pickaxe", new SkillGoal(skills, Skill.MINING, PickaxeType.ADAMANT.getMiningLevel())),
+				new IMEntry(this, PickaxeType.RUNE.getItemID(), 1, "Rune pickaxe", new SkillGoal(skills, Skill.MINING, PickaxeType.RUNE.getMiningLevel()))
+		};
+	}
+
+	@Override
+	public int[] itemsToSell() {
+		return ItemManagement.ORION_SELL_ITEMS;
 	}
 }
