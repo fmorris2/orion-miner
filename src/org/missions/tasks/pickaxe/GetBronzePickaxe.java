@@ -18,7 +18,7 @@ public class GetBronzePickaxe extends Task<OrionMiner> {
 
     @Override
     public boolean validate() {
-        return OM_Vars.get().needsBronzePickAxe;
+        return OM_Vars.get().needs_bronze_pickaxe;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class GetBronzePickaxe extends Task<OrionMiner> {
         if (myPosition().distance(TUTOR_POS) > DIST_THRESH)
             walkUtils.walkTo(TUTOR_POS);
         else if (iFact.dialogue("Talk-to", "Mining tutor", 15, 1).execute() && inventory.contains("Bronze pickaxe"))
-            OM_Vars.get().needsBronzePickAxe = false;
+            OM_Vars.get().needs_bronze_pickaxe = false;
 
     }
 }

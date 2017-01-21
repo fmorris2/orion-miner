@@ -18,9 +18,10 @@ public class OM_Vars {
         vars = null;
     }
 
-    public boolean is_upgrading_pickaxe, needsBronzePickAxe;
+    public boolean is_upgrading_pickaxe;
+    public boolean needs_bronze_pickaxe;
 
-    public MiningLocation mining_location = MiningLocation.M_VARROCK_WEST_1;
+    public MiningLocation mining_location = MiningLocation.M_LUMBRIDGE_SOUTH_1;
     public RockType rock_type = RockType.TIN_ORE;
 
 }

@@ -20,7 +20,7 @@ public class GetPickaxe extends Task<OrionMiner> {
     @Override
     public boolean validate() {
         if (!client.isLoggedIn() || !myPlayer().isVisible() || OM_Vars.get().is_upgrading_pickaxe
-                || OM_Vars.get().needsBronzePickAxe)
+                || OM_Vars.get().needs_bronze_pickaxe)
             return false;
 
         return !equipment.isWearingItem(EquipmentSlot.WEAPON) && mining.getBestUsablePickaxe(false) == null;
@@ -36,7 +36,7 @@ public class GetPickaxe extends Task<OrionMiner> {
 
             final PickaxeType best_usable_axe = mining.getBestUsablePickaxe(true);
             if (best_usable_axe == null) {
-                OM_Vars.get().needsBronzePickAxe = true;
+                OM_Vars.get().needs_bronze_pickaxe = true;
                 return;
             }
 

@@ -10,7 +10,6 @@ import viking.api.Timing;
 import viking.api.filter.VFilters;
 import viking.framework.task.Task;
 
-import java.util.Arrays;
 
 /**
  * Created by Sphiinx on 1/12/2017.
@@ -35,9 +34,9 @@ public class WalkToMiningLocation extends Task<OrionMiner> {
     public void execute() {
         if (walkUtils.walkToArea(OM_Vars.get().mining_location.getArea(), () -> {
             final RS2Object ROCK = getValidRock();
-            return ROCK != null && ROCK.isVisible();
+            return ROCK != null;
         })) {
-            Timing.waitCondition(() -> OM_Vars.get().mining_location.getArea().contains(myPlayer()), 150, random(2000, 2500));
+            Timing.waitCondition(() -> getValidRock() != null, 150, random(2000, 2500));
         }
     }
 
