@@ -38,7 +38,7 @@ public class UpgradePickaxe extends GetPickaxe {
 
         super.execute();
 
-        if (equipment.getItems().length > 0)
+        if (!equipment.isEmpty())
             if (bank.depositWornItems())
                 Timing.waitCondition(() -> equipment.getItems().length <= 0, 150, random(2000, 2500));
     }

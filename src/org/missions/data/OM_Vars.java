@@ -1,6 +1,7 @@
 package org.missions.data;
 
-import org.missions.data.enums.MiningLocation;
+
+import viking.api.skills.mining.enums.MiningLocation;
 import viking.api.skills.mining.enums.RockType;
 
 /**
