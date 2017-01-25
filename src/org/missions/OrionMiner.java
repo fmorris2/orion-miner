@@ -1,9 +1,8 @@
 package org.missions;
 
 import org.missions.data.OM_Vars;
-import org.missions.data.enums.MiningLocation;
-import org.missions.tasks.OM_DepositItems;
 import org.missions.tasks.MineRock;
+import org.missions.tasks.OM_DepositItems;
 import org.missions.tasks.WalkToMiningLocation;
 import org.missions.tasks.pickaxe.EquipPickaxe;
 import org.missions.tasks.pickaxe.GetBronzePickaxe;
@@ -11,6 +10,8 @@ import org.missions.tasks.pickaxe.GetPickaxe;
 import org.missions.tasks.pickaxe.UpgradePickaxe;
 import org.osbot.rs07.api.ui.Message;
 import org.osbot.rs07.api.ui.Skill;
+
+import viking.api.skills.mining.enums.MiningLocation;
 import viking.api.skills.mining.enums.PickaxeType;
 import viking.api.skills.mining.enums.RockType;
 import viking.framework.command.CommandReceiver;
